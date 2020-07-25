@@ -567,7 +567,9 @@ pub fn get_lines_from_osm(pbf: &mut OsmPbfReader) -> Vec<Line> {
 
 pub fn get_osm_tcobjects(parsed_pbf: &mut OsmPbfReader, stops_only: bool) -> OsmTcResponse {
     let stop_points = get_stop_points_from_osm(parsed_pbf);
+    println!("NB SP: {}", stop_points.len());
     let stop_areas = get_stop_areas_from_osm(parsed_pbf);
+    println!("NB SA: {}", stop_areas.len());
     if stops_only {
         OsmTcResponse {
             stop_points,
@@ -577,7 +579,9 @@ pub fn get_osm_tcobjects(parsed_pbf: &mut OsmPbfReader, stops_only: bool) -> Osm
         }
     } else {
         let routes = get_routes_from_osm(parsed_pbf);
+        println!("NB R: {}", routes.len());
         let lines = get_lines_from_osm(parsed_pbf);
+        println!("NB L: {}", lines.len());
         OsmTcResponse {
             stop_points,
             stop_areas,
